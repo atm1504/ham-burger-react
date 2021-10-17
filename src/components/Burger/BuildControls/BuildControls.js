@@ -20,6 +20,7 @@ export const BuildControls = (props) => {
                     label={ctrl.label}
                     type={ctrl.type}
                     added={() => props.ingredientAdded(ctrl.type)}
+                    removed={() => props.removeIngredient(ctrl.type)}
                 />
             ))}
         </div>
