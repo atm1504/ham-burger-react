@@ -1,9 +1,13 @@
-import React from 'react'
+import React from 'react';
 
-const Logo = () => {
+import burgerLogo from "./../../assets/images/burger-logo.png"
+import classes from "./Logo.css"
+
+const Logo = (props) => {
     return (
-        <div>
-            
+        <div className={classes.Logo}>
+            <img src={burgerLogo} />
+
         </div>
     )
 }
