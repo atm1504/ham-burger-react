@@ -5,6 +5,8 @@ import { Route, Switch } from 'react-router';
 
 import Checkout from './containers/Checkout/Checkout';
 
+import Orders from './containers/Orders/Orders';
+
 export default class App extends Component {
   // state = {
   //   show: true
@@ -24,6 +26,8 @@ export default class App extends Component {
           {/* {this.state.show ? <BurgerBuilder /> : null} */}
           <Switch>
             <Route path="/checkout" component={Checkout} />
+            <Route path="/orders" component={Orders} />
+
             <Route path="/" exact component={BurgerBuilder} />
           </Switch>
 
