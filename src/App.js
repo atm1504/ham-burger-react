@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Layout from './hoc/Layout/Layout';
 import BurgerBuilder from './containers/BurgerBuilder/BurgerBuilder';
+import { Route, Switch } from 'react-router';
 
 import Checkout from './containers/Checkout/Checkout';
 
@@ -21,8 +22,11 @@ export default class App extends Component {
       <div>
         <Layout >
           {/* {this.state.show ? <BurgerBuilder /> : null} */}
-          <BurgerBuilder />
-          <Checkout />
+          <Switch>
+            <Route path="/checkout" component={Checkout} />
+            <Route path="/" exact component={BurgerBuilder} />
+          </Switch>
+
         </Layout>
       </div>
     )
