@@ -124,6 +124,9 @@ export default class ContactData extends Component {
 
     checkValidity(value, rules) {
         let isValid = true;
+        if (!rules) {
+            return true;
+        }
         if (rules.required) {
             isValid = value.trim() !== "" && isValid;
         }
@@ -154,7 +157,13 @@ export default class ContactData extends Component {
 
         // console.log(event.target.value)
         console.log(updatedFormElement)
-        this.setState({ orderForm: updatedOrderForm })
+
+        let formIsValid = true;
+        for (let inputIdentifier in updatedOrderForm) {
+            formIsValid = updatedOrderForm[inputIdentifier].valid && formIsValid;
+        }
+
+        this.setState({ orderForm: updatedOrderForm, formIsValid: formIsValid })
     }
 
     render() {
@@ -184,7 +193,7 @@ export default class ContactData extends Component {
                     ))
                 }
 
-                <Button btnType="Success">ORDER</Button>
+                <Button btnType="Success" disabled={!this.state.formIsValid} >ORDER</Button>
             </form>
         );
 
