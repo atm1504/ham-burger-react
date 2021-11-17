@@ -122,6 +122,22 @@ export default class ContactData extends Component {
             })
     }
 
+    checkValidity(value, rules) {
+        let isValid = true;
+        if (rules.required) {
+            isValid = value.trim() !== "" && isValid;
+        }
+
+        if (rules.minLength) {
+            isValid = value.length >= rules.minLength && isValid
+        }
+
+        if (rules.maxLength) {
+            isValid = value.length <= rules.maxLength && isValid
+        }
+        return isValid;
+    }
+
     inputChangedHandler = (event, inputIdentifier) => {
 
         const updatedOrderForm = {
@@ -132,9 +148,11 @@ export default class ContactData extends Component {
         };
 
         updatedFormElement.value = event.target.value;
+        updatedFormElement.valid = this.checkValidity(updatedFormElement.value, updatedFormElement.validation)
         updatedOrderForm[inputIdentifier] = updatedFormElement;
 
         // console.log(event.target.value)
+        console.log(updatedFormElement)
         this.setState({ orderForm: updatedOrderForm })
     }
 
