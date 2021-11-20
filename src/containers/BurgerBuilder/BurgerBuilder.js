@@ -31,15 +31,15 @@ class BurgerBuilder extends Component {
     }
 
     componentDidMount() {
-        console.log(this.props)
-        axios.get("https://testing-a97bd-default-rtdb.asia-southeast1.firebasedatabase.app/ingredients.json")
-            .then(res => {
-                console.log(res)
-                this.setState({ ingredients: res.data, error: false })
-            }).catch(err => {
-                console.log(err)
-                this.setState({ error: true })
-            })
+        // console.log(this.props)
+        // axios.get("https://testing-a97bd-default-rtdb.asia-southeast1.firebasedatabase.app/ingredients.json")
+        //     .then(res => {
+        //         console.log(res)
+        //         this.setState({ ingredients: res.data, error: false })
+        //     }).catch(err => {
+        //         console.log(err)
+        //         this.setState({ error: true })
+        //     })
     }
 
 
