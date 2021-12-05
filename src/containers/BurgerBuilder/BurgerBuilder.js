@@ -14,6 +14,7 @@ import axios from "./../../axios-orders";
 import { connect } from 'react-redux';
 
 import *  as actions from "./../../store/actions/index";
+import { tsThisType } from '@babel/types';
 
 
 
@@ -43,7 +44,12 @@ class BurgerBuilder extends Component {
     }
 
     purchaseHandler = () => {
-        this.setState({ purchasing: true })
+        if (this.props.isAuthenticated) {
+            this.setState({ purchasing: true })
+        } else {
+            this.props.history.push("/auth")
+        }
+        
     }
 
     purchaseCancelHandler = () => {
@@ -78,6 +84,7 @@ class BurgerBuilder extends Component {
                     price={this.props.totalPrice}
                     purchasable={this.updatePurchaseState(this.props.ings)}
                     ordered={this.purchaseHandler}
+                    isAuth={this.props.isAuthenticated}
                 />
             </Aux>)
 
@@ -87,6 +94,7 @@ class BurgerBuilder extends Component {
                 purchaseCancelled={this.purchaseCancelHandler}
                 purchaseContinued={this.purchaseContinueHandler}
                 price={this.props.totalPrice}
+                isAuth={this.props.isAuthenticated}
             />
 
             // }
@@ -107,7 +115,8 @@ const mapStateToProps = state => {
     return {
         ings: state.burgerBuilder.ingredients,
         totalPrice: state.burgerBuilder.totalPrice,
-        error: state.burgerBuilder.error
+        error: state.burgerBuilder.error,
+        isAuthenticated: state.auth.token !== null
 
     }
 }
