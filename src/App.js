@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Layout from './hoc/Layout/Layout';
 import BurgerBuilder from './containers/BurgerBuilder/BurgerBuilder';
-import { Route, Switch } from 'react-router';
+import { Route, Switch, withRouter } from 'react-router';
 import { connect } from "react-redux";
 import * as actions from "./store/actions"
 
@@ -52,4 +52,4 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-export default connect(null, mapDispatchToProps)(App)
+export default withRouter(connect(null, mapDispatchToProps)(App))
